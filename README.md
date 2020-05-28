@@ -135,13 +135,11 @@ This can be done in the Environments section of your Azure Pipelines.
 
 ## Summary of the Execution Steps
     * Create Resource Group
-    * Create Data Bricks 
-    * Launch Azure DataBricks WorkSpace 
-    * Import NoteBooks 
+    * Create Data Bricks and Launch Azure DataBricks WorkSpace 
+    * Import Python NoteBooks within Azure DataBricks WorkSpace under Users 
     * Connect Databricks to Azure DevOPS Pipeline 
         - Click User Settings 
-        - Generate Token
-        - Save the Token 
+        - Generate and Save the Azure Databricks Token 
         - Click Git Integration and select "Azure DevOps Services" as Git Provider and Save the changes
         - Each Notebook is synced with GitHub by the following:  
             - Open "Train" Notbook , click on "Revision History" , then click Git:Synced , select "Link" Button and provide Path in Git                 Repo as : notebooks/train.py
@@ -149,14 +147,36 @@ This can be done in the Environments section of your Azure Pipelines.
             - Open "serving_deploy_to_aci" Notbook , click on "Revision History" , then click Git:Synced , select "Link" Button                          and provide Path in Git Repo as : notebooks/serving_deploy_to_aci.py
             - Open "serving_deploy_to_aks" Notbook , click on "Revision History" , then click Git:Synced , select "Link" Button                          and provide Path in Git Repo as : notebooks/serving_deploy_to_aks.py
         
-        - Click on DevOps Repos you should see a notebook folder with all the Python files 
-        
-            
-            
-            
-            
+        - Click on Azure DevOps Repos you should see a notebook folder with all the Python files . All Python Files within Azure                    databricks are synced to Azure DevOps Repos 
         
     * Create new Project within Azure DevOps
-    * Create a new Repo on Azure DevOps
+    * Create a new Repo within Azure DevOps
+    * Create a new PipleLine within Azure DevOps
+        - Select Azure Repos Git (YAML) 
+        - Select my Azure DevOps Repo
+        - Select Starter Pipeline 
+        - Copy the contents of the file "azure-pipelines.yml" into this new Start Pipeline
+        - Change the Varibles to refer to the Databricks Cluster URL that has been created previously 
+        - Open the Pipleline and click on "Variables" 
+        - Create a new variable called "databricks.token" and paste the value of the Azure Databricks token 
+        
+    * Details of "azure-pipelines.yml"  
+        - Install Databricks CLI
+        - Configure Databricks CLI
+        - Create Notebook Path ( this is under shared Location) 
+        - Import Notebooks ( this is under shared Location)
+        - Create / Get Cluster
+        - Start Cluster
+        - Install Azure ML SDK on the Cluster 
+        - Create / Get Training Job ( this is the Temp Python Notebook) 
+        - Run Training Jobs ( executing 3 Runs with different alpha and l1_ratio values) 
+        - Build Container Image
+        - Copy Files to Artifact Staging Directory
+        - Publish Artifacts: drop
+        - Create Staging Environment  (Deploy to Azure Container Instance by executing serving_deploy_to_aci.py Script) 
+        - Create Production Enviroment ( Deploy to Azure Kubernetes Service by executing serving_deploy_to_aks.py Script)
+        
+        
+        
     
 
