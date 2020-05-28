@@ -142,6 +142,21 @@ This can be done in the Environments section of your Azure Pipelines.
         - Click User Settings 
         - Generate Token
         - Save the Token 
+        - Click Git Integration and select "Azure DevOps Services" as Git Provider and Save the changes
+        - Each Notebook is synced with GitHub by the following:  
+            - Open "Train" Notbook , click on "Revision History" , then click Git:Synced , select "Link" Button and provide Path in Git                 Repo as : notebooks/train.py
+            - Open "serving_build_container_image" Notbook , click on "Revision History" , then click Git:Synced , select "Link" Button                 and provide Path in Git Repo as : notebooks/serving_build_container_image.py
+            - Open "serving_deploy_to_aci" Notbook , click on "Revision History" , then click Git:Synced , select "Link" Button                          and provide Path in Git Repo as : notebooks/serving_deploy_to_aci.py
+            - Open "serving_deploy_to_aks" Notbook , click on "Revision History" , then click Git:Synced , select "Link" Button                          and provide Path in Git Repo as : notebooks/serving_deploy_to_aks.py
+        
+        - Click on DevOps Repos you should see a notebook folder with all the Python files 
+        
+            
+            
+            
+            
+        
     * Create new Project within Azure DevOps
     * Create a new Repo on Azure DevOps
+    
 
