@@ -8,9 +8,10 @@ The DevOps Pipelines are defined using the [azure-pipelines.yml](./azure-pipelin
 
 If you want to run this example in Azure DevOps, you need to prepare you enviroment with the following steps.
 
-## Following Azure services are created 
+## Following Azure Services created 
     Azure Resource Group  
     Azure Data Bricks 
+    Azure ML Services 
     Azure DevOPS Project 
   
 ## Required Accounts And Resources
@@ -146,9 +147,7 @@ This can be done in the Environments section of your Azure Pipelines.
             - Open "serving_build_container_image" Notbook , click on "Revision History" , then click Git:Synced , select "Link" Button                 and provide Path in Git Repo as : notebooks/serving_build_container_image.py
             - Open "serving_deploy_to_aci" Notbook , click on "Revision History" , then click Git:Synced , select "Link" Button                          and provide Path in Git Repo as : notebooks/serving_deploy_to_aci.py
             - Open "serving_deploy_to_aks" Notbook , click on "Revision History" , then click Git:Synced , select "Link" Button                          and provide Path in Git Repo as : notebooks/serving_deploy_to_aks.py
-        
         - Click on Azure DevOps Repos you should see a notebook folder with all the Python files . All Python Files within Azure                    databricks are synced to Azure DevOps Repos 
-        
     * Create new Project within Azure DevOps
     * Create a new Repo within Azure DevOps
     * Create a new PipleLine within Azure DevOps
@@ -176,7 +175,23 @@ This can be done in the Environments section of your Azure Pipelines.
         - Create Staging Environment  (Deploy to Azure Container Instance by executing serving_deploy_to_aci.py Script) 
         - Create Production Enviroment ( Deploy to Azure Kubernetes Service by executing serving_deploy_to_aks.py Script)
         
+    * Details of "train.py"  
+        - Using MLflow Train the Model 
+        - Log RMSE, MAE and R2
+        - Linear regression model that takes two hyperparameters: alpha and l1_ratio. 
+       
+    * Details of "serving_build_container_image.py"
+        - Create Workspace based on ServicePrincipalauthentication and ADB Secrets 
+        - Use MLFlow to build an Azure Container Image for the trained MLflow model.This function also registers the MLflow model with a            specified Azure ML workspace. The resulting image can be deployed to Azure Container Instances (ACI) or Azure Kubernetes                Service (AKS) for real-time serving.
         
-        
+    * Details of "serving_deploy_to_aci.py"
+        - Serving Models with Microsoft Azure ML 
+        - Create Azure ML Workspace based on ServicePrincipalauthentication and ADB Secrets 
+        - Using the Azure ML SDK, deploy the Container Image for the trained MLflow model to ACI.
+      
+    * Details of "serving_deploy_to_aks.py"
+        - Serving Models with Microsoft Azure ML 
+        - Create Azure ML Workspace based on ServicePrincipalauthentication and ADB Secrets 
+        - Using the Azure ML SDK, deploy the Container Image for the trained MLflow model to AKS.
+      
     
-
