@@ -8,6 +8,11 @@ The DevOps Pipelines are defined using the [azure-pipelines.yml](./azure-pipelin
 
 If you want to run this example in Azure DevOps, you need to prepare you enviroment with the following steps.
 
+## Following Azure services are created 
+    Azure Resource Group  
+    Azure Data Bricks 
+    Azure DevOPS Project 
+  
 ## Required Accounts And Resources
 
 This examples uses Azure DevOps as an CI/CD toolset, as well as the Microsoft Azure platform to host you trained Machine Learning Model.
@@ -126,3 +131,17 @@ To avoid high costs from the Azure Kubernetes Service, which will be created by 
 This can be done in the Environments section of your Azure Pipelines.
 
 ![Azure Pipeline Environments](./images/Environments.png)
+
+
+## Summary of the Execution Steps
+    * Create Resource Group
+    * Create Data Bricks 
+    * Launch Azure DataBricks WorkSpace 
+    * Import NoteBooks 
+    * Connect Databricks to Azure DevOPS Pipeline 
+        - Click User Settings 
+        - Generate Token
+        - Save the Token 
+    * Create new Project within Azure DevOps
+    * Create a new Repo on Azure DevOps
+
